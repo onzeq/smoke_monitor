@@ -1,0 +1,6 @@
+[submodule "3rdParty/BME68x_SensorAPI"]
+	path = 3rdParty/BME68x_SensorAPI
+	url = https://github.com/boschsensortec/BME68x_SensorAPI.git
+[submodule "smoke_monitor/Drivers/STM32F1xx_HAL_Driver"]
+	path = smoke_monitor/Drivers/STM32F1xx_HAL_Driver
+	url = https://github.com/STMicroelectronics/stm32f1xx-hal-driver.git

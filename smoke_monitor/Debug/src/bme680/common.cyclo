@@ -1,0 +1,6 @@
+../src/bme680/common.c:32:22:bme68x_i2c_read	1
+../src/bme680/common.c:45:22:bme68x_i2c_write	1
+../src/bme680/common.c:82:6:bme68x_delay_us	1
+../src/bme680/common.c:88:6:bme68x_check_rslt	8
+../src/bme680/common.c:120:8:bme68x_interface_init	3
+../src/bme680/common.c:150:6:bme68x_coines_deinit	1
