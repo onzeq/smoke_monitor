@@ -14,11 +14,9 @@ C_SRCS += \
 ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.c \
 ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c \
 ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c \
+../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.c \
 ../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c \
-../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c \
-../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.c \
-../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_i2c.c \
-../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_rcc.c 
+../Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c 
 
 OBJS += \
 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o \
@@ -30,11 +28,9 @@ OBJS += \
 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.o \
 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o \
 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.o \
+./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.o \
 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o \
-./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o \
-./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.o \
-./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_i2c.o \
-./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_rcc.o 
+./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o 
 
 C_DEPS += \
 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.d \
@@ -46,21 +42,19 @@ C_DEPS += \
 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.d \
 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.d \
 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.d \
+./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.d \
 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.d \
-./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.d \
-./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.d \
-./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_i2c.d \
-./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_rcc.d 
+./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
 Drivers/STM32F1xx_HAL_Driver/Src/%.o Drivers/STM32F1xx_HAL_Driver/Src/%.su Drivers/STM32F1xx_HAL_Driver/Src/%.cyclo: ../Drivers/STM32F1xx_HAL_Driver/Src/%.c Drivers/STM32F1xx_HAL_Driver/Src/subdir.mk
-	arm-none-eabi-gcc "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I"/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI" -I"/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include" -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I"/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/freertos/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I"C:/src/git/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI" -I"C:/src/git/smoke_monitor/smoke_monitor/include" -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I"C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfloat-abi=soft -mthumb -o "$@"
 
 clean: clean-Drivers-2f-STM32F1xx_HAL_Driver-2f-Src
 
 clean-Drivers-2f-STM32F1xx_HAL_Driver-2f-Src:
-	-$(RM) ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_gpio.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_i2c.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_i2c.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_i2c.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_i2c.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_rcc.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_rcc.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_rcc.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_rcc.su
+	-$(RM) ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_i2c.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.su ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.cyclo ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.d ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.su
 
 .PHONY: clean-Drivers-2f-STM32F1xx_HAL_Driver-2f-Src
 

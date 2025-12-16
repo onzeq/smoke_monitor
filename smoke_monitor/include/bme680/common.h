@@ -110,6 +110,7 @@ void bme68x_check_rslt(const char api_name[], int8_t rslt);
  *  @return void.
  */
 void bme68x_coines_deinit(void);
+void bme_task();
 
 #ifdef __cplusplus
 }

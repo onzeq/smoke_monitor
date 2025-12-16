@@ -27,7 +27,6 @@ SUBDIRS := \
 3rdParty/freertos/Src \
 Core/Src \
 Core/Startup \
-Drivers/STM32F1xx_HAL_Driver/Src/Legacy \
 Drivers/STM32F1xx_HAL_Driver/Src \
 src/bme680 \
 src \

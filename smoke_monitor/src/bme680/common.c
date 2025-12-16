@@ -4,77 +4,97 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+#include "FreeRTOS.h"
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
 
 #include "bme68x.h"
 #include "bme680/common.h"
-#include "stm32f1xx_hal.h"
-#include "FreeRTOS.h"
+#include "spi.h"
 
-extern I2C_HandleTypeDef hi2c1;
+#include "stm32f1xx_hal.h"
+
 /******************************************************************************/
 /*!                 Macro definitions                                         */
 /*! BME68X shuttle board ID */
 #define BME68X_SHUTTLE_ID  0x93
+#define BUFFER_SIZE 8
 
 /******************************************************************************/
 /*!                Static variable definition                                 */
 static uint8_t dev_addr;
+SPI_HandleTypeDef hspi1;
+
+static volatile bool bme680_vbRspiIdle;
+// static void bme680_vRspiCb(void* pcbdat);
+static uint8_t rw_buffer[BUFFER_SIZE];
 
 /******************************************************************************/
 /*!                User interface functions                                   */
 
 /*!
- * I2C read function map to COINES platform
- */
-BME68X_INTF_RET_TYPE bme68x_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len, void *intf_ptr)
-{
-    uint8_t device_addr = *(uint8_t*)intf_ptr;
-
-    (void)intf_ptr;
-
-    return HAL_I2C_Mem_Read(&hi2c1, device_addr, reg_addr,sizeof(uint8_t), reg_data, len, 0xFFFFFFFF);
-    // return coines_read_i2c(COINES_I2C_BUS_0, device_addr, reg_addr, reg_data, (uint16_t)len);
-}
-
-/*!
- * I2C write function map to COINES platform
- */
-BME68X_INTF_RET_TYPE bme68x_i2c_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t len, void *intf_ptr)
-{
-    uint8_t device_addr = *(uint8_t*)intf_ptr;
-
-    (void)intf_ptr;
-
-    return HAL_I2C_Mem_Write(&hi2c1, device_addr, reg_addr,sizeof(uint8_t), reg_data, len, 0xFFFFFFFF);
-    // return coines_write_i2c(COINES_I2C_BUS_0, device_addr, reg_addr, (uint8_t *)reg_data, (uint16_t)len);
-}
-
-/*!
  * SPI read function map to COINES platform
  */
-// BME68X_INTF_RET_TYPE bme68x_spi_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len, void *intf_ptr)
-// {
-//     uint8_t device_addr = *(uint8_t*)intf_ptr;
+BME68X_INTF_RET_TYPE bme68x_spi_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len, void *intf_ptr)
+{
+    HAL_StatusTypeDef err;
+    BME68X_INTF_RET_TYPE ret;
+    uint8_t device_addr = *(uint8_t*)intf_ptr;
 
-//     (void)intf_ptr;
+    (void)intf_ptr;
 
-//     return coines_read_spi(COINES_SPI_BUS_0, device_addr, reg_addr, reg_data, (uint16_t)len);
-// }
+    /* Write control byte */
+    err = HAL_SPI_TransmitReceive(&hspi1,
+                reg_data, 
+                rw_buffer, 
+                len+1,
+                portMAX_DELAY);
+
+    if(err == HAL_OK)
+    {
+        memcpy(reg_data, &rw_buffer[1], len); /* Read starts after write of reg_addr*/
+        ret = BME68X_INTF_RET_SUCCESS;
+    }
+    else
+    {
+        ret = -1;
+    }
+    return ret;
+}
 
 /*!
  * SPI write function map to COINES platform
  */
-// BME68X_INTF_RET_TYPE bme68x_spi_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t len, void *intf_ptr)
-// {
-//     uint8_t device_addr = *(uint8_t*)intf_ptr;
+BME68X_INTF_RET_TYPE bme68x_spi_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t len, void *intf_ptr)
+{
+    HAL_StatusTypeDef err;
+    BME68X_INTF_RET_TYPE ret;
+    uint8_t device_addr = *(uint8_t*)intf_ptr;
 
-//     (void)intf_ptr;
+    (void)intf_ptr;
 
-//     return coines_write_spi(COINES_SPI_BUS_0, device_addr, reg_addr, (uint8_t *)reg_data, (uint16_t)len);
-// }
+    
+    rw_buffer[0] = reg_addr;
+    memcpy((rw_buffer +1), reg_data, len);
+
+    err = HAL_SPI_Transmit(&hspi1, 
+        rw_buffer, 
+        len + 1, 
+        portMAX_DELAY);
+
+    if(err == HAL_OK)
+    {
+        ret = BME68X_INTF_RET_SUCCESS;
+    }
+    else
+    {
+        ret = -1;
+    }
+    return ret;
+}
 
 /*!
  * Delay function map to COINES platform
@@ -82,7 +102,7 @@ BME68X_INTF_RET_TYPE bme68x_i2c_write(uint8_t reg_addr, const uint8_t *reg_data,
 void bme68x_delay_us(uint32_t period, void *intf_ptr)
 {
     (void)intf_ptr;
-    vTaskDelay(pdMS_TO_TICKS(period/1000));
+    vTaskDelay(period/1000);
 }
 
 void bme68x_check_rslt(const char api_name[], int8_t rslt)
@@ -120,20 +140,38 @@ void bme68x_check_rslt(const char api_name[], int8_t rslt)
 int8_t bme68x_interface_init(struct bme68x_dev *bme, uint8_t intf)
 {
     int8_t rslt = BME68X_OK;
+    HAL_StatusTypeDef err;
+    BME68X_INTF_RET_TYPE ret;
 
     if (bme != NULL)
     {
-        /* Bus configuration : I2C */
-        if (intf == BME68X_I2C_INTF)
+
+        err = MX_SPI1_Init(&hspi1);
+    
+        if (err != HAL_OK)
         {
-            printf("I2C Interface\n");
-            dev_addr = BME68X_I2C_ADDR_LOW;
-            bme->read = bme68x_i2c_read;
-            bme->write = bme68x_i2c_write;
-            bme->intf = BME68X_I2C_INTF;
+            // thread_safe_printf(
+            //     "\n Unable to connect with Application Board ! \n" " 1. Check if the board is connected and powered on. \n" " 2. Check if Application Board USB driver is installed. \n"
+            //     " 3. Check if board is in use by another application. (Insufficient permissions to access USB) \n");
+            while(1)
+            {}
+        }
+#if defined(PC)
+        setbuf(stdout, NULL);
+#endif
+
+        vTaskDelay(100);
+
+        /* Bus configuration : SPI */
+        if (intf == BME68X_SPI_INTF)
+        {
+            dev_addr = 0;
+            bme->read = bme68x_spi_read;
+            bme->write = bme68x_spi_write;
+            bme->intf = BME68X_SPI_INTF;
         }
 
-        HAL_Delay(100);
+        vTaskDelay(100);
 
         bme->delay_us = bme68x_delay_us;
         bme->intf_ptr = &dev_addr;

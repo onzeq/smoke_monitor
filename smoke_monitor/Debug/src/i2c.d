@@ -22,10 +22,11 @@ src/i2c.o: ../src/i2c.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/i2c.h \
- /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/main.h
+ C:/src/git/smoke_monitor/smoke_monitor/include/i2c.h \
+ C:/src/git/smoke_monitor/smoke_monitor/include/main.h
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:
@@ -49,7 +50,8 @@ src/i2c.o: ../src/i2c.c \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
-/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/i2c.h:
-/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/main.h:
+C:/src/git/smoke_monitor/smoke_monitor/include/i2c.h:
+C:/src/git/smoke_monitor/smoke_monitor/include/main.h:

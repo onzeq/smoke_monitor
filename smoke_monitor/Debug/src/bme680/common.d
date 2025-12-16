@@ -1,7 +1,15 @@
 src/bme680/common.o: ../src/bme680/common.c \
- /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x.h \
- /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x_defs.h \
- /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/bme680/common.h \
+ C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/FreeRTOS.h \
+ C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/FreeRTOSConfig.h \
+ C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/projdefs.h \
+ C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/portable.h \
+ C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/deprecated_definitions.h \
+ C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/portmacro.h \
+ C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/mpu_wrappers.h \
+ C:/src/git/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x.h \
+ C:/src/git/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x_defs.h \
+ C:/src/git/smoke_monitor/smoke_monitor/include/bme680/common.h \
+ C:/src/git/smoke_monitor/smoke_monitor/include/spi.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -25,18 +33,20 @@ src/bme680/common.o: ../src/bme680/common.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
- ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/freertos/Inc/FreeRTOS.h \
- /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/freertos/Inc/FreeRTOSConfig.h \
- /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/freertos/Inc/projdefs.h \
- /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/freertos/Inc/portable.h \
- /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/freertos/Inc/deprecated_definitions.h \
- /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/freertos/Inc/portmacro.h \
- /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/freertos/Inc/mpu_wrappers.h
-/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x.h:
-/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x_defs.h:
-/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/bme680/common.h:
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/FreeRTOS.h:
+C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/FreeRTOSConfig.h:
+C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/projdefs.h:
+C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/portable.h:
+C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/deprecated_definitions.h:
+C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/portmacro.h:
+C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/mpu_wrappers.h:
+C:/src/git/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x.h:
+C:/src/git/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x_defs.h:
+C:/src/git/smoke_monitor/smoke_monitor/include/bme680/common.h:
+C:/src/git/smoke_monitor/smoke_monitor/include/spi.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:
@@ -60,12 +70,6 @@ src/bme680/common.o: ../src/bme680/common.c \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
-/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/freertos/Inc/FreeRTOS.h:
-/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/freertos/Inc/FreeRTOSConfig.h:
-/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/freertos/Inc/projdefs.h:
-/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/freertos/Inc/portable.h:
-/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/freertos/Inc/deprecated_definitions.h:
-/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/freertos/Inc/portmacro.h:
-/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/freertos/Inc/mpu_wrappers.h:

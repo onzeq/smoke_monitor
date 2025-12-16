@@ -36,7 +36,6 @@
 
 /* USER CODE BEGIN PV */
 extern I2C_HandleTypeDef hi2c1;
-struct bme68x_dev bme;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -52,9 +51,6 @@ static void MX_GPIO_Init(void);
 
 static void Blinky(void *pvParameters){
 
-	int8_t rslt;
-	rslt = bme68x_init(&bme);
-	bme68x_check_rslt("bme68x_init", rslt);
 	while (1){
 
 		HAL_GPIO_TogglePin(BUZZER_GPIO_Port, BUZZER_Pin);
@@ -72,7 +68,6 @@ static void Blinky(void *pvParameters){
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  int8_t rslt;
 
   /* USER CODE END 1 */
 
@@ -97,10 +92,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   MX_I2C1_Init();
 
-  rslt = bme68x_interface_init(&bme, BME68X_I2C_INTF);
-  bme68x_check_rslt("bme68x_interface_init", rslt);
-  xTaskCreate(Blinky, "",
-  		  configMINIMAL_STACK_SIZE,
+  xTaskCreate(bme_task, "bme_task",
+  		  configMINIMAL_STACK_SIZE*4,
   		  NULL,
   		  1,
   		  NULL);
@@ -115,7 +108,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+    portYIELD();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -173,6 +166,7 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
@@ -185,16 +179,15 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LED_GPIO_Port, &GPIO_InitStruct);
 
-  __HAL_RCC_GPIOB_CLK_ENABLE();
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET);
+//   /*Configure GPIO pin Output Level */
+//   HAL_GPIO_WritePin(BUZZER_GPIO_Port, BUZZER_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : LED_Pin */
-  GPIO_InitStruct.Pin = BUZZER_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(BUZZER_GPIO_Port, &GPIO_InitStruct);
+//   /*Configure GPIO pin : LED_Pin */
+//   GPIO_InitStruct.Pin = BUZZER_Pin;
+//   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+//   GPIO_InitStruct.Pull = GPIO_NOPULL;
+//   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+//   HAL_GPIO_Init(BUZZER_GPIO_Port, &GPIO_InitStruct);
 
 }
 
