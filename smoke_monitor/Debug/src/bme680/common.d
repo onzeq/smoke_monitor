@@ -1,11 +1,11 @@
 src/bme680/common.o: ../src/bme680/common.c \
- C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/FreeRTOS.h \
- C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/FreeRTOSConfig.h \
- C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/projdefs.h \
- C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/portable.h \
- C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/deprecated_definitions.h \
- C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/portmacro.h \
- C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/mpu_wrappers.h \
+ C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
+ ../Core/Inc/FreeRTOSConfig.h \
+ C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
+ C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/portable.h \
+ C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
+ C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h \
+ C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
  C:/src/git/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x.h \
  C:/src/git/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x_defs.h \
  C:/src/git/smoke_monitor/smoke_monitor/include/bme680/common.h \
@@ -31,18 +31,17 @@ src/bme680/common.o: ../src/bme680/common.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
- ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
-C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/FreeRTOS.h:
-C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/FreeRTOSConfig.h:
-C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/projdefs.h:
-C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/portable.h:
-C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/deprecated_definitions.h:
-C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/portmacro.h:
-C:/src/git/smoke_monitor/smoke_monitor/freertos/Inc/mpu_wrappers.h:
+C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
+../Core/Inc/FreeRTOSConfig.h:
+C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
+C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
+C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:
+C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h:
+C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
 C:/src/git/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x.h:
 C:/src/git/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x_defs.h:
 C:/src/git/smoke_monitor/smoke_monitor/include/bme680/common.h:
@@ -68,7 +67,6 @@ C:/src/git/smoke_monitor/smoke_monitor/include/spi.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:
-../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:

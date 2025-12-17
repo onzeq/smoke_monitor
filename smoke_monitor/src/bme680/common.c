@@ -30,7 +30,8 @@ SPI_HandleTypeDef hspi1;
 
 static volatile bool bme680_vbRspiIdle;
 // static void bme680_vRspiCb(void* pcbdat);
-static uint8_t rw_buffer[BUFFER_SIZE];
+static uint8_t r_buffer[BUFFER_SIZE];
+static uint8_t w_buffer[BUFFER_SIZE];
 
 /******************************************************************************/
 /*!                User interface functions                                   */
@@ -43,19 +44,22 @@ BME68X_INTF_RET_TYPE bme68x_spi_read(uint8_t reg_addr, uint8_t *reg_data, uint32
     HAL_StatusTypeDef err;
     BME68X_INTF_RET_TYPE ret;
     uint8_t device_addr = *(uint8_t*)intf_ptr;
-
+    memset((void *)r_buffer, 0, BUFFER_SIZE);
+    memset((void *)w_buffer, 0, BUFFER_SIZE);
+    w_buffer[0] = reg_addr;
     (void)intf_ptr;
 
     /* Write control byte */
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
     err = HAL_SPI_TransmitReceive(&hspi1,
-                reg_data, 
-                rw_buffer, 
-                len+1,
-                portMAX_DELAY);
-
+        w_buffer, 
+        r_buffer, 
+        len+1,
+        portMAX_DELAY);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
     if(err == HAL_OK)
     {
-        memcpy(reg_data, &rw_buffer[1], len); /* Read starts after write of reg_addr*/
+        memcpy(reg_data, &r_buffer[1], len); /* Read starts after write of reg_addr*/
         ret = BME68X_INTF_RET_SUCCESS;
     }
     else
@@ -75,16 +79,18 @@ BME68X_INTF_RET_TYPE bme68x_spi_write(uint8_t reg_addr, const uint8_t *reg_data,
     uint8_t device_addr = *(uint8_t*)intf_ptr;
 
     (void)intf_ptr;
+    memset((void *)w_buffer, 0, BUFFER_SIZE);
 
     
-    rw_buffer[0] = reg_addr;
-    memcpy((rw_buffer +1), reg_data, len);
+    w_buffer[0] = reg_addr;
+    memcpy((w_buffer +1), reg_data, len);
 
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
     err = HAL_SPI_Transmit(&hspi1, 
-        rw_buffer, 
+        w_buffer, 
         len + 1, 
         portMAX_DELAY);
-
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
     if(err == HAL_OK)
     {
         ret = BME68X_INTF_RET_SUCCESS;
