@@ -1,0 +1,8 @@
+gwen:
+    core:       db51cd0
+    net80211:   fbfeb71
+    pp:         12d8a11
+    espnow:     db51cd0
+
+    smartconfig:  3.0.0/283eacca
+    phy:          1163.0

@@ -1,15 +1,15 @@
 src/bme680/common.o: ../src/bme680/common.c \
- C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  ../Core/Inc/FreeRTOSConfig.h \
- C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
- C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/portable.h \
- C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
- C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h \
- C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
- C:/src/git/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x.h \
- C:/src/git/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x_defs.h \
- C:/src/git/smoke_monitor/smoke_monitor/include/bme680/common.h \
- C:/src/git/smoke_monitor/smoke_monitor/include/spi.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/portable.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x_defs.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/bme680/common.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/spi.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -35,17 +35,17 @@ src/bme680/common.o: ../src/bme680/common.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
-C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
-C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
-C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
-C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:
-C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h:
-C:/src/git/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
-C:/src/git/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x.h:
-C:/src/git/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x_defs.h:
-C:/src/git/smoke_monitor/smoke_monitor/include/bme680/common.h:
-C:/src/git/smoke_monitor/smoke_monitor/include/spi.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x_defs.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/bme680/common.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/spi.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:

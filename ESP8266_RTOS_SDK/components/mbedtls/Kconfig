@@ -1,0 +1,21 @@
+menu "mbedTLS"
+
+choice MBEDTLS_VERSION
+    prompt "Mbedtls Version"
+    default MBEDTLS_V2
+
+    config MBEDTLS_V2
+        bool "MbedTls V2.x"
+
+    config MBEDTLS_V3
+        bool "MbedTls V3.x (Not Support openssl)"
+endchoice
+
+if MBEDTLS_V2
+source "$IDF_PATH/components/mbedtls/mbedtls_v2/Kconfig"
+endif
+
+if MBEDTLS_V3
+source "$IDF_PATH/components/mbedtls/mbedtls_v3/Kconfig"
+endif
+endmenu

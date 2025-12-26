@@ -1,2 +1,4 @@
 .vscode/
 smoke_monitor/Debug/**
+.venv
+smoke_monitor/Debug/

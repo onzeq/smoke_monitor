@@ -15,6 +15,7 @@ RM := rm -rf
 -include Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/subdir.mk
 -include Middlewares/Third_Party/FreeRTOS/Source/subdir.mk
+-include Drivers/STM32F1xx_HAL_Driver/Src/Legacy/subdir.mk
 -include Drivers/STM32F1xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
@@ -67,8 +68,8 @@ all: main-build
 main-build: smoke_monitor.elf secondary-outputs
 
 # Tool invocations
-smoke_monitor.elf smoke_monitor.map: $(OBJS) $(USER_OBJS) C:\src\git\smoke_monitor\smoke_monitor\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "smoke_monitor.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\src\git\smoke_monitor\smoke_monitor\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="smoke_monitor.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+smoke_monitor.elf smoke_monitor.map: $(OBJS) $(USER_OBJS) /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "smoke_monitor.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="smoke_monitor.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
