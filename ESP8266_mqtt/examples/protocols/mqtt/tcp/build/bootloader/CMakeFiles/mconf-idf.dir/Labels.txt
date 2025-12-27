@@ -1,0 +1,13 @@
+# Target labels
+ mconf-idf
+# Source files and their labels
+/home/jake/projects/Rauch_Logger/smoke_monitor/ESP8266_mqtt/examples/protocols/mqtt/tcp/build/bootloader/CMakeFiles/mconf-idf
+/home/jake/projects/Rauch_Logger/smoke_monitor/ESP8266_mqtt/examples/protocols/mqtt/tcp/build/bootloader/CMakeFiles/mconf-idf.rule
+/home/jake/projects/Rauch_Logger/smoke_monitor/ESP8266_mqtt/examples/protocols/mqtt/tcp/build/bootloader/CMakeFiles/mconf-idf-complete.rule
+/home/jake/projects/Rauch_Logger/smoke_monitor/ESP8266_mqtt/examples/protocols/mqtt/tcp/build/bootloader/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-build.rule
+/home/jake/projects/Rauch_Logger/smoke_monitor/ESP8266_mqtt/examples/protocols/mqtt/tcp/build/bootloader/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-configure.rule
+/home/jake/projects/Rauch_Logger/smoke_monitor/ESP8266_mqtt/examples/protocols/mqtt/tcp/build/bootloader/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-download.rule
+/home/jake/projects/Rauch_Logger/smoke_monitor/ESP8266_mqtt/examples/protocols/mqtt/tcp/build/bootloader/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-install.rule
+/home/jake/projects/Rauch_Logger/smoke_monitor/ESP8266_mqtt/examples/protocols/mqtt/tcp/build/bootloader/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-mkdir.rule
+/home/jake/projects/Rauch_Logger/smoke_monitor/ESP8266_mqtt/examples/protocols/mqtt/tcp/build/bootloader/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-patch.rule
+/home/jake/projects/Rauch_Logger/smoke_monitor/ESP8266_mqtt/examples/protocols/mqtt/tcp/build/bootloader/mconf-idf-prefix/src/mconf-idf-stamp/mconf-idf-update.rule
