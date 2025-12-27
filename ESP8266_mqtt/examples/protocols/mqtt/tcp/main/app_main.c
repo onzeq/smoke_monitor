@@ -29,6 +29,8 @@
 
 #include "esp_log.h"
 #include "mqtt_client.h"
+#include "ipc_task.h"
+
 
 
 static const char *TAG = "MQTT_EXAMPLE";
@@ -124,5 +126,6 @@ void app_main(void)
      */
     ESP_ERROR_CHECK(example_connect());
 
+    ipc_task_create();
     mqtt_app_start();
 }

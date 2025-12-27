@@ -35,5 +35,6 @@
 "./Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.o"
 "./src/bme680/common.o"
 "./src/forced_mode.o"
+"./src/ipc.o"
 "./src/main.o"
 "./src/spi.o"

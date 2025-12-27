@@ -22,6 +22,8 @@
 #include "stm32f1xx_hal.h"
 #include "bme68x.h"
 #include "bme680/common.h"
+#include "ipc.h"
+
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -47,8 +49,14 @@
 
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
+osThreadId_t ipcTaskHandle;
+const osThreadAttr_t ipcTask_attributes = {
+  .name = "ipcTask",
+  .stack_size = 128 * 8,
+  .priority = (osPriority_t) osPriorityNormal1,
+};
 const osThreadAttr_t defaultTask_attributes = {
-  .name = "defaultTask",
+  .name = "ipcTask",
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
@@ -123,6 +131,7 @@ int main(void)
 
   /* Create the thread(s) */
   /* creation of defaultTask */
+  ipcTaskHandle = osThreadNew(ipc_task, NULL, &ipcTask_attributes);
   defaultTaskHandle = osThreadNew(bme_task, NULL, &defaultTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -134,7 +143,7 @@ int main(void)
   /* USER CODE END RTOS_EVENTS */
 
   /* Start scheduler */
-  osKernelStart();
+osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
 

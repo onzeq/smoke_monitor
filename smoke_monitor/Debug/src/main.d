@@ -38,7 +38,13 @@ src/main.o: ../src/main.c \
  /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h \
  /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x.h \
  /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x_defs.h \
- /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/bme680/common.h
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/bme680/common.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/ipc.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
+ /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x_defs.h
 /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
@@ -79,3 +85,9 @@ src/main.o: ../src/main.c \
 /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x.h:
 /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x_defs.h:
 /home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/bme680/common.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/include/ipc.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
+/home/jake/projects/Rauch_Logger/smoke_monitor/smoke_monitor/3rdParty/BME68x_SensorAPI/bme68x_defs.h:

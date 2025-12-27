@@ -7,11 +7,13 @@
 
 #include "FreeRTOS.h"
 #include "task.h"
+#include "queue.h"
 #include <stdio.h>
 // #include "uart_interface/uart_interface.h"
 
 #include "bme68x.h"
 #include "bme680/common.h"
+#include "ipc.h"
 #define thread_safe_printf(...) 
 #define serial_printf(...) 
 // #include "thread_safe_printf.h"
@@ -26,6 +28,7 @@
 /***********************************************************************/
 /*                         Test code                                   */
 /***********************************************************************/
+BME_RESIST_VAL_S resist_val = {.id = 0, .value = 0};
 
 void bme_task(void)
 {
@@ -112,11 +115,17 @@ void bme_task(void)
                    (long unsigned int)data.gas_resistance,
                    data.status);
 #endif
+            resist_val.value = data.gas_resistance;
+            if(NULL == ipc_queue)
+            {
+                continue;
+            }
+            if (xQueueSend(ipc_queue, &resist_val, portMAX_DELAY) == pdFAIL)
+            {
+                continue;
+            }
+            vTaskDelay(100);
             sample_count++;
-        }
     }
-
-    while(1)
-    {
-    }
+}
 }

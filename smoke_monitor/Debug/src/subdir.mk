@@ -6,16 +6,19 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../src/forced_mode.c \
+../src/ipc.c \
 ../src/main.c \
 ../src/spi.c 
 
 OBJS += \
 ./src/forced_mode.o \
+./src/ipc.o \
 ./src/main.o \
 ./src/spi.o 
 
 C_DEPS += \
 ./src/forced_mode.d \
+./src/ipc.d \
 ./src/main.d \
 ./src/spi.d 
 
@@ -27,7 +30,7 @@ src/%.o src/%.su src/%.cyclo: ../src/%.c src/subdir.mk
 clean: clean-src
 
 clean-src:
-	-$(RM) ./src/forced_mode.cyclo ./src/forced_mode.d ./src/forced_mode.o ./src/forced_mode.su ./src/main.cyclo ./src/main.d ./src/main.o ./src/main.su ./src/spi.cyclo ./src/spi.d ./src/spi.o ./src/spi.su
+	-$(RM) ./src/forced_mode.cyclo ./src/forced_mode.d ./src/forced_mode.o ./src/forced_mode.su ./src/ipc.cyclo ./src/ipc.d ./src/ipc.o ./src/ipc.su ./src/main.cyclo ./src/main.d ./src/main.o ./src/main.su ./src/spi.cyclo ./src/spi.d ./src/spi.o ./src/spi.su
 
 .PHONY: clean-src
 
