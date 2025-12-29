@@ -2,4 +2,4 @@
 smoke_monitor/Debug/**
 .venv
 smoke_monitor/Debug/
-ESP8266_mqtt/examples/protocols/mqtt/tcp/build/**
+ESP8266_mqtt/examples/protocols/mqtt/tcp/build
