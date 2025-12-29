@@ -210,6 +210,8 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
+  HAL_GPIO_DeInit(GPIOA, GPIO_PIN_All);
+  HAL_GPIO_DeInit(GPIOB, GPIO_PIN_All);
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
   /* USER CODE END MX_GPIO_Init_2 */

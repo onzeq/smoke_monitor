@@ -1,6 +1,6 @@
-../src/bme680/common.c:42:22:bme68x_spi_read	40	static
-../src/bme680/common.c:75:22:bme68x_spi_write	32	static
-../src/bme680/common.c:108:6:bme68x_delay_us	16	static
-../src/bme680/common.c:114:6:bme68x_check_rslt	16	static
-../src/bme680/common.c:146:8:bme68x_interface_init	24	static
-../src/bme680/common.c:194:6:bme68x_coines_deinit	4	static
+../src/bme680/common.c:43:22:bme68x_spi_read	40	static
+../src/bme680/common.c:76:22:bme68x_spi_write	32	static
+../src/bme680/common.c:109:6:bme68x_delay_us	16	static
+../src/bme680/common.c:115:6:bme68x_check_rslt	16	static
+../src/bme680/common.c:147:8:bme68x_interface_init	24	static
+../src/bme680/common.c:195:6:bme68x_coines_deinit	4	static

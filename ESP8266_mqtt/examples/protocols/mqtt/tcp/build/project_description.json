@@ -6,7 +6,7 @@
     "config_defaults":    "",
     "app_elf":            "mqtt_tcp.elf",
     "app_bin":            "mqtt_tcp.bin",
-    "git_revision":       "a72e45a-dirty",
+    "git_revision":       "3514993-dirty",
     "phy_data_partition": "",
     "monitor_baud" : "74880",
     "config_environment" : {

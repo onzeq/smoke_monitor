@@ -101,58 +101,47 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
     __HAL_RCC_SPI1_CLK_ENABLE();
 
     __HAL_RCC_GPIOA_CLK_ENABLE();
-    __HAL_RCC_GPIOB_CLK_ENABLE();
     /**SPI1 GPIO Configuration
-    PA15     ------> SPI1_NSS --> Done Manually
-    PB3     ------> SPI1_SCK
-    PB4     ------> SPI1_MISO
-    PB5     ------> SPI1_MOSI
+    PA5     ------> SPI1_SCK
+    PA6     ------> SPI1_MISO
+    PA7     ------> SPI1_MOSI
+    PA4    ------> SPI1_NSS --> Done Manually
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_15;
+    GPIO_InitStruct.Pin = GPIO_PIN_5|GPIO_PIN_7;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+    GPIO_InitStruct.Pin = GPIO_PIN_6;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+    GPIO_InitStruct.Pin = SPI1_CS;
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
     GPIO_InitStruct.Pull = GPIO_PULLUP;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_5;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = GPIO_PIN_4;
-    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-    __HAL_AFIO_REMAP_SPI1_ENABLE();
 
     /* USER CODE BEGIN SPI1_MspInit 1 */
 
     /* USER CODE END SPI1_MspInit 1 */
-
   }
-  if(hspi->Instance==SPI2)
+  else if(hspi->Instance==SPI2)
   {
-    /* USER CODE BEGIN SPI1_MspInit 0 */
+    /* USER CODE BEGIN SPI2_MspInit 0 */
 
-    /* USER CODE END SPI1_MspInit 0 */
+    /* USER CODE END SPI2_MspInit 0 */
     /* Peripheral clock enable */
     __HAL_RCC_SPI2_CLK_ENABLE();
 
-    __HAL_RCC_GPIOA_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();
     /**SPI2 GPIO Configuration
-    PA12     ------> SPI1_NSS --> Done Manually
-    PB13     ------> SPI1_SCK
-    PB14     ------> SPI1_MISO
-    PB15     ------> SPI1_MOSI
+    PB13     ------> SPI2_SCK
+    PB14     ------> SPI2_MISO
+    PB15     ------> SPI2_MOSI
+    PB12    ------> SPI2_NSS --> Done Manually
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_12;
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-    GPIO_InitStruct.Pull = GPIO_PULLUP;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
     GPIO_InitStruct.Pin = GPIO_PIN_13|GPIO_PIN_15;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
@@ -163,12 +152,126 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-    /* USER CODE BEGIN SPI1_MspInit 1 */
+    GPIO_InitStruct.Pin = GPIO_PIN_12;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
 
-    /* USER CODE END SPI1_MspInit 1 */
+    /* USER CODE BEGIN SPI2_MspInit 1 */
+
+    /* USER CODE END SPI2_MspInit 1 */
   }
 
 }
+// void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
+// {
+//   GPIO_InitTypeDef GPIO_InitStruct = {0};
+//   if(hspi->Instance==SPI1)
+//   {
+//     /* USER CODE BEGIN SPI1_MspInit 0 */
+
+//     /* USER CODE END SPI1_MspInit 0 */
+//     /* Peripheral clock enable */
+//     // __HAL_RCC_SPI1_CLK_ENABLE();
+
+//     // __HAL_RCC_GPIOA_CLK_ENABLE();
+//     // __HAL_RCC_GPIOB_CLK_ENABLE();
+//     // /**SPI1 GPIO Configuration
+//     // PA15     ------> SPI1_NSS --> Done Manually
+//     // PB3     ------> SPI1_SCK
+//     // PB4     ------> SPI1_MISO
+//     // PB5     ------> SPI1_MOSI
+//     // */
+//     // GPIO_InitStruct.Pin = GPIO_PIN_15;
+//     // GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+//     // GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+//     // GPIO_InitStruct.Pull = GPIO_PULLUP;
+//     // HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+//     // GPIO_InitStruct.Pin = GPIO_PIN_3|GPIO_PIN_5;
+//     // GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+//     // GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+//     // HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+//     // GPIO_InitStruct.Pin = GPIO_PIN_4;
+//     // GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+//     // GPIO_InitStruct.Pull = GPIO_NOPULL;
+//     // HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+//     // __HAL_AFIO_REMAP_SPI1_ENABLE();
+
+
+//     __HAL_AFIO_REMAP_SPI1_DISABLE();
+//     __HAL_RCC_SPI1_CLK_ENABLE();
+
+//     __HAL_RCC_GPIOA_CLK_ENABLE();
+//     /**SPI1 GPIO Configuration
+//      PA7     ------> SPI1_MOSI
+//      PA6     ------> SPI1_MISO
+//      PA5     ------> SPI1_SCK
+//      PA4    ------> SPI1_NSS --> Done Manually
+//     */
+//     GPIO_InitStruct.Pin = SPI1_CS;
+//     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+//     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+//     GPIO_InitStruct.Pull = GPIO_PULLUP;
+//     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+//     GPIO_InitStruct.Pin = GPIO_PIN_5|GPIO_PIN_7;
+//     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+//     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+//     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+//     GPIO_InitStruct.Pin = GPIO_PIN_6;
+//     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+//     GPIO_InitStruct.Pull = GPIO_NOPULL;
+//     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+//     /* USER CODE BEGIN SPI1_MspInit 1 */
+
+//     /* USER CODE END SPI1_MspInit 1 */
+
+//   }
+//   if(hspi->Instance==SPI2)
+//   {
+//     /* USER CODE BEGIN SPI1_MspInit 0 */
+
+//     /* USER CODE END SPI1_MspInit 0 */
+//     /* Peripheral clock enable */
+//     __HAL_RCC_SPI2_CLK_ENABLE();
+
+//     __HAL_RCC_GPIOA_CLK_ENABLE();
+//     __HAL_RCC_GPIOB_CLK_ENABLE();
+//     /**SPI2 GPIO Configuration
+//     PA12     ------> SPI1_NSS --> Done Manually
+//     PB13     ------> SPI1_SCK
+//     PB14     ------> SPI1_MISO
+//     PB15     ------> SPI1_MOSI
+//     */
+//     GPIO_InitStruct.Pin = GPIO_PIN_12;
+//     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+//     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+//     GPIO_InitStruct.Pull = GPIO_PULLUP;
+//     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+//     GPIO_InitStruct.Pin = GPIO_PIN_13|GPIO_PIN_15;
+//     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+//     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+//     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+//     GPIO_InitStruct.Pin = GPIO_PIN_14;
+//     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+//     GPIO_InitStruct.Pull = GPIO_NOPULL;
+//     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+//     /* USER CODE BEGIN SPI1_MspInit 1 */
+
+//     /* USER CODE END SPI1_MspInit 1 */
+//   }
+
+// }
 
 /**
   * @brief SPI MSP De-Initialization

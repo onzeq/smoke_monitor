@@ -30,6 +30,7 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f1xx_hal.h"
 
+#define SPI1_CS GPIO_PIN_4
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 

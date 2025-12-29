@@ -11,6 +11,7 @@
 #include <stdbool.h>
 #include <string.h>
 
+#include "main.h"
 #include "bme68x.h"
 #include "bme680/common.h"
 #include "spi.h"
@@ -50,13 +51,13 @@ BME68X_INTF_RET_TYPE bme68x_spi_read(uint8_t reg_addr, uint8_t *reg_data, uint32
     (void)intf_ptr;
 
     /* Write control byte */
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(GPIOA, SPI1_CS, GPIO_PIN_RESET);
     err = HAL_SPI_TransmitReceive(&hspi1,
         w_buffer, 
         r_buffer, 
         len+1,
         portMAX_DELAY);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOA, SPI1_CS, GPIO_PIN_SET);
     if(err == HAL_OK)
     {
         memcpy(reg_data, &r_buffer[1], len); /* Read starts after write of reg_addr*/
@@ -85,12 +86,12 @@ BME68X_INTF_RET_TYPE bme68x_spi_write(uint8_t reg_addr, const uint8_t *reg_data,
     w_buffer[0] = reg_addr;
     memcpy((w_buffer +1), reg_data, len);
 
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(GPIOA, SPI1_CS, GPIO_PIN_RESET);
     err = HAL_SPI_Transmit(&hspi1, 
         w_buffer, 
         len + 1, 
         portMAX_DELAY);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOA, SPI1_CS, GPIO_PIN_SET);
     if(err == HAL_OK)
     {
         ret = BME68X_INTF_RET_SUCCESS;

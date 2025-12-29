@@ -17,9 +17,15 @@ static SPI_HandleTypeDef hspi2;
 static uint8_t tx_buffer[TX_BUFF_SIZE];
 static IPC_STATUS_COMMAND_S status_cmd;
 
+// BME_RESIST_VAL_S bme_data = {.id = 0, .value=3.0};
 
 EventGroupHandle_t gpioEventGroup;
 QueueHandle_t ipc_queue;
+
+void EXTI3_IRQHandler(void)
+{
+    HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_3);
+}
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
@@ -80,7 +86,7 @@ void ipc_init()
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
     // Enable EXTI interrupt in NVIC
-    HAL_NVIC_SetPriority(EXTI3_IRQn, 2, 0);
+    HAL_NVIC_SetPriority(EXTI3_IRQn, 5, 0);
     HAL_NVIC_EnableIRQ(EXTI3_IRQn);
 
     /* Initialize spi2*/
@@ -98,68 +104,68 @@ static ipc_write(void* data, uint32_t len)
     
     HAL_StatusTypeDef err = HAL_OK;
 
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_RESET);
     err = HAL_SPI_Transmit(&hspi2, 
                     data, 
                     len, 
                     portMAX_DELAY);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET);
     return err;
 }
 
 void ipc_task()
 {
     HAL_StatusTypeDef err = HAL_OK;
-    BME_RESIST_VAL_S *bme_data = NULL;
+    BME_RESIST_VAL_S *pBme_data = NULL;
     ipc_init();
     /* Make sure cs is low as long as esp boots up */
 
+    // pBme_data = &bme_data;
     for(;;)
     {
-        if (xQueueReceive(ipc_queue, &bme_data, portMAX_DELAY) == pdFAIL)
+        if (xQueueReceive(ipc_queue, &pBme_data, portMAX_DELAY) == pdFAIL)
         {
             vTaskDelay(100);
             continue;
         }
-        if(NULL == bme_data) 
+        if(NULL == pBme_data) 
         {
             vTaskDelay(100);
             continue;
         }
+        /* Write lenth to status register */
+        status_cmd.cmd = 1; /* Status command */
+        status_cmd.data = sizeof(BME_RESIST_VAL_S); /* Status command */
+        err = ipc_write(&status_cmd, sizeof(status_cmd));
+        if(HAL_OK != err)
         {
-            /* Write lenth to status register */
-            status_cmd.cmd = 1; /* Status command */
-            status_cmd.data = sizeof(BME_RESIST_VAL_S); /* Status command */
-            err = ipc_write(&status_cmd, sizeof(status_cmd));
-            if(HAL_OK != err)
-            {
-                continue;
-            }
-
-            wait_for_isr();
-
-            /* Write actual data */
-            tx_buffer[0] = 2; /* Master send command */ 
-            memcpy(tx_buffer +1, bme_data, sizeof(BME_RESIST_VAL_S)); /* Copy data to tx buffer */
-
-            err = ipc_write(&tx_buffer, sizeof(BME_RESIST_VAL_S) +1 );
-            if(HAL_OK != err)
-            {
-                continue;
-            }
-            wait_for_isr();
-
-            /* Write lenth to status register */
-            status_cmd.cmd = 1; /* Status command */
-            status_cmd.data = 0x00; /* Status command */
-
-            err = ipc_write(&tx_buffer, sizeof(BME_RESIST_VAL_S) +1 );
-            if(HAL_OK != err)
-            {
-                continue;
-            }
-            wait_for_isr();
+            continue;
         }
+
+        wait_for_isr();
+
+        /* Write actual data */
+        tx_buffer[0] = 2; /* Master send command */ 
+        memcpy(tx_buffer +1, pBme_data, sizeof(BME_RESIST_VAL_S)); /* Copy data to tx buffer */
+
+        err = ipc_write(&tx_buffer, sizeof(BME_RESIST_VAL_S) +1 );
+        if(HAL_OK != err)
+        {
+            continue;
+        }
+        wait_for_isr();
+
+        /* Write lenth to status register */
+        status_cmd.cmd = 1; /* Status command */
+        status_cmd.data = 0x00; /* Status command */
+
+        err = ipc_write(&tx_buffer, sizeof(BME_RESIST_VAL_S) +1 );
+        if(HAL_OK != err)
+        {
+            continue;
+        }
+        wait_for_isr();
+        vTaskDelay(pdMS_TO_TICKS(2000));
     }
 
     /* 

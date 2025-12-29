@@ -14,6 +14,7 @@
 #include "esp_system.h"
 #include "esp_log.h"
 
+#include "app_main.h"
 #include "driver/spi.h"
 #include "driver/hspi_logic_layer.h"
 
@@ -36,12 +37,16 @@ static void IRAM_ATTR spi_slave_read_master_task(void *arg)
 
         read_len = hspi_slave_logic_read_data(read_data, SPI_READ_BUFFER_MAX_SIZE, 1000);
 
-        ESP_LOGI(TAG,"read_len %d: \n", read_len);
-        for(int i=0;i< read_len;i++){
-            
-            ESP_LOGI(TAG,"Receive byte %d: %x\n",i, read_data[i]);
-            
+        if(read_len > 0)
+        {
+            send_mqtt(read_data,  read_len);
         }
+        // ESP_LOGI(TAG,"read_len %d: \n", read_len);
+        // for(int i=0;i< read_len;i++){
+            
+        //     ESP_LOGI(TAG,"Receive byte %d: %x\n",i, read_data[i]);
+            
+        // }
         memset(read_data, 0x0, SPI_READ_BUFFER_MAX_SIZE);
     }
 }

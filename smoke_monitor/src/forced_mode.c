@@ -28,7 +28,8 @@
 /***********************************************************************/
 /*                         Test code                                   */
 /***********************************************************************/
-BME_RESIST_VAL_S resist_val = {.id = 0, .value = 0};
+#define NUM_VALS 10
+BME_RESIST_VAL_S resist_vals[NUM_VALS];
 
 void bme_task(void)
 {
@@ -41,6 +42,8 @@ void bme_task(void)
     uint32_t time_ms = 0;
     uint8_t n_fields;
     uint16_t sample_count = 1;
+    uint8_t i = 0;
+    BME_RESIST_VAL_S * pObj;
 
     /* Interface preference is updated as a parameter
      * For I2C : BME68X_I2C_INTF
@@ -75,6 +78,7 @@ void bme_task(void)
 
     while (sample_count <= SAMPLE_COUNT)
     {
+        i = (i + 1)%(NUM_VALS-1);
         rslt = bme68x_set_op_mode(BME68X_FORCED_MODE, &bme);
         bme68x_check_rslt("bme68x_set_op_mode", rslt);
 
@@ -115,12 +119,14 @@ void bme_task(void)
                    (long unsigned int)data.gas_resistance,
                    data.status);
 #endif
-            resist_val.value = data.gas_resistance;
+            pObj = &resist_vals[i];
+            pObj->id = 0;
+            pObj->value = data.gas_resistance;
             if(NULL == ipc_queue)
             {
                 continue;
             }
-            if (xQueueSend(ipc_queue, &resist_val, portMAX_DELAY) == pdFAIL)
+            if (xQueueSend(ipc_queue, &pObj, portMAX_DELAY) == pdFAIL)
             {
                 continue;
             }

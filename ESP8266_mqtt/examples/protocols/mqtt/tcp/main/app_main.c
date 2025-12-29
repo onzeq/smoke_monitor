@@ -30,12 +30,14 @@
 #include "esp_log.h"
 #include "mqtt_client.h"
 #include "ipc_task.h"
+#include "app_main.h"
 
 
 
 static const char *TAG = "MQTT_EXAMPLE";
 
 
+static esp_mqtt_client_handle_t pClient;
 static esp_err_t mqtt_event_handler_cb(esp_mqtt_event_handle_t event)
 {
     esp_mqtt_client_handle_t client = event->client;
@@ -97,9 +99,24 @@ static void mqtt_app_start(void)
         .uri = CONFIG_BROKER_URL,
     };
 
-    esp_mqtt_client_handle_t client = esp_mqtt_client_init(&mqtt_cfg);
-    esp_mqtt_client_register_event(client, ESP_EVENT_ANY_ID, mqtt_event_handler, client);
-    esp_mqtt_client_start(client);
+    pClient = esp_mqtt_client_init(&mqtt_cfg);
+    esp_mqtt_client_register_event(pClient, ESP_EVENT_ANY_ID, mqtt_event_handler, pClient);
+    esp_mqtt_client_start(pClient);
+}
+
+void send_mqtt(void* data, size_t len)
+{
+
+    int msg_id;
+    if(pClient == NULL)
+    {
+        return;
+    }
+    // if(pClient.state != MQTT_STATE_CONNECTED)
+    // {
+    //     return;
+    // }
+    msg_id = esp_mqtt_client_publish(pClient, "/topic/qos1", data, len, 1, 0);
 }
 
 void app_main(void)
