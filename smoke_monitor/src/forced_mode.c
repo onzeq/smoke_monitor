@@ -120,7 +120,6 @@ void bme_task(void)
                    data.status);
 #endif
             pObj = &resist_vals[i];
-            pObj->id = 0;
             pObj->value = data.gas_resistance;
             if(NULL == ipc_queue)
             {

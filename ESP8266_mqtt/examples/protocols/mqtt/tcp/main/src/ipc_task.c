@@ -18,7 +18,7 @@
 #include "driver/spi.h"
 #include "driver/hspi_logic_layer.h"
 
-static const char *TAG = "spi_slave_example";
+// static const char *TAG = "spi_slave_example";
 
 #define SPI_SLAVE_HANDSHARK_GPIO                4
 
@@ -27,8 +27,9 @@ static const char *TAG = "spi_slave_example";
 
 
 uint32_t read_count = 0;
+static char* TAG = "ipc_task";
 
-
+char str[10];
 static void IRAM_ATTR spi_slave_read_master_task(void *arg)
 {
     static uint8_t read_data[SPI_READ_BUFFER_MAX_SIZE];
@@ -39,14 +40,16 @@ static void IRAM_ATTR spi_slave_read_master_task(void *arg)
 
         if(read_len > 0)
         {
-            send_mqtt(read_data,  read_len);
+
+            send_mqtt(read_data, read_len);
         }
-        // ESP_LOGI(TAG,"read_len %d: \n", read_len);
-        // for(int i=0;i< read_len;i++){
+        ESP_LOGI(TAG,"read_len %.3f: \n", *(float*)(read_data));
+        ESP_LOGI(TAG,"read_len %d: \n", read_len);
+        for(int i=0;i< read_len;i++){
             
-        //     ESP_LOGI(TAG,"Receive byte %d: %x\n",i, read_data[i]);
+            ESP_LOGI(TAG,"Receive byte %d: %x\n",i, read_data[i]);
             
-        // }
+        }
         memset(read_data, 0x0, SPI_READ_BUFFER_MAX_SIZE);
     }
 }

@@ -17,7 +17,6 @@ extern QueueHandle_t ipc_queue;
 
 typedef struct
 {
-    uint32_t id;
 #ifndef BME68X_USE_FPU
     /*! Gas resistance in Ohms */
     uint32_t value;

@@ -135,7 +135,7 @@ void ipc_task()
         }
         /* Write lenth to status register */
         status_cmd.cmd = 1; /* Status command */
-        status_cmd.data = sizeof(BME_RESIST_VAL_S); /* Status command */
+        status_cmd.data = sizeof(BME_RESIST_VAL_S) + 1; /* Status command */
         err = ipc_write(&status_cmd, sizeof(status_cmd));
         if(HAL_OK != err)
         {
@@ -146,9 +146,9 @@ void ipc_task()
 
         /* Write actual data */
         tx_buffer[0] = 2; /* Master send command */ 
-        memcpy(tx_buffer +1, pBme_data, sizeof(BME_RESIST_VAL_S)); /* Copy data to tx buffer */
+        memcpy(tx_buffer + 2, pBme_data, sizeof(BME_RESIST_VAL_S)); /* Copy data to tx buffer */
 
-        err = ipc_write(&tx_buffer, sizeof(BME_RESIST_VAL_S) +1 );
+        err = ipc_write(&tx_buffer, sizeof(BME_RESIST_VAL_S) +2 );
         if(HAL_OK != err)
         {
             continue;
@@ -159,13 +159,13 @@ void ipc_task()
         status_cmd.cmd = 1; /* Status command */
         status_cmd.data = 0x00; /* Status command */
 
-        err = ipc_write(&tx_buffer, sizeof(BME_RESIST_VAL_S) +1 );
+        err = ipc_write(&status_cmd, sizeof(BME_RESIST_VAL_S) +1 );
         if(HAL_OK != err)
         {
             continue;
         }
         wait_for_isr();
-        vTaskDelay(pdMS_TO_TICKS(2000));
+        vTaskDelay(pdMS_TO_TICKS(5000));
     }
 
     /* 

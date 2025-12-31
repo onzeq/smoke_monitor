@@ -86,6 +86,7 @@
 #endif
 #endif
 
+// #define BME68X_DO_NOT_USE_FPU
 #ifndef BME68X_DO_NOT_USE_FPU
 
 /* Comment or un-comment the macro to provide floating point data output */

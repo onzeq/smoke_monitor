@@ -2,4 +2,11 @@
 smoke_monitor/Debug/**
 .venv
 smoke_monitor/Debug/
-ESP8266_mqtt/examples/protocols/mqtt/tcp/build
+ESP8266_mqtt/examples/protocols/mqtt/tcp/build/
+ESP8266_mqtt/build
+ESP8266_mqtt/tools/kconfig/
+ESP8266_mqtt/components/coap/libcoap/
+ESP8266_mqtt/components/json/cJSON/tests/
+ESP8266_mqtt/components/mbedtls/mbedtls_v3/mbedtls/framework/tests/
+ESP8266_mqtt/components/protobuf-c/protobuf-c/.
+ESP8266_mqtt/components/mbedtls/mbedtls_v3/mbedtls/programs/
