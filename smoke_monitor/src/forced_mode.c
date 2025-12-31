@@ -120,7 +120,10 @@ void bme_task(void)
                    data.status);
 #endif
             pObj = &resist_vals[i];
-            pObj->value = data.gas_resistance;
+            pObj->gas_resistance = data.gas_resistance;
+            pObj->humidity = data.humidity/1000;
+            pObj->temperature = data.temperature;
+            pObj->pressure = data.pressure;
             if(NULL == ipc_queue)
             {
                 continue;

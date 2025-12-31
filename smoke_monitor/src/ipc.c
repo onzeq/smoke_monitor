@@ -128,6 +128,7 @@ void ipc_task()
             vTaskDelay(100);
             continue;
         }
+
         if(NULL == pBme_data) 
         {
             vTaskDelay(100);

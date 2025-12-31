@@ -21,7 +21,16 @@ typedef struct
     /*! Gas resistance in Ohms */
     uint32_t value;
 #else
-    float value;
+    /*! Gas resistance in Ohms */
+    float gas_resistance;
+    /*! Temperature in degree celsius */
+    float temperature;
+
+    /*! Pressure in Pascal */
+    float pressure;
+
+    /*! Humidity in % relative humidity x1000 */
+    float humidity;
 #endif
 } BME_RESIST_VAL_S;
 
